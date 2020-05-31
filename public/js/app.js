@@ -1,12 +1,3 @@
-console.log('Client javascript loaded !')
-
-// fetch('http://puzzle.mead.io/puzzle').then((res) => {
-//     res.json().then( (data) => {
-//         console.log(data)
-//     })
-// })
-
-
 const searchForm = document.querySelector('form')
 const searchInput = document.querySelector('input')
 const messageShowOne = document.querySelector('#mes-1')
