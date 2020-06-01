@@ -8,7 +8,7 @@ searchForm.addEventListener('submit', (e) => {
     messageShowOne.textContent = 'Loading..'
     messageShowTwo.textContent = ''
 
-    fetch('http://localhost:3000/weather?address=' + searchInput.value).then( (res ) => {
+    fetch('/weather?address=' + searchInput.value).then( (res ) => {
         res.json().then( (data) => {
             if( data.errorMessage ){
                 return messageShowOne.textContent = data.errorMessage
