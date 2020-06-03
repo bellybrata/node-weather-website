@@ -3,14 +3,11 @@ const searchInput = document.querySelector('input')
 const messageShowOne = document.querySelector('#mes-1')
 const messageShowTwo = document.querySelector('#mes-2')
 
-searchForm.addEventListener('submit', (e) => {
-    e.preventDefault()
-    messageShowOne.textContent = 'Loading..'
-    messageShowTwo.textContent = ''
+function getWeatherData(input){
 
-    fetch('/weather?address=' + searchInput.value).then( (res ) => {
-        res.json().then( (data) => {
-            if( data.errorMessage ){
+    fetch('/weather?address=' + input).then((res) => {
+        res.json().then((data) => {
+            if (data.errorMessage) {
                 return messageShowOne.textContent = data.errorMessage
             }
 
@@ -19,4 +16,35 @@ searchForm.addEventListener('submit', (e) => {
         })
     })
 
+}
+
+searchInput.addEventListener('click', () => {
+    if(searchInput.value != ''){
+        searchInput.value = ''
+    }
 })
+
+searchForm.addEventListener('submit', (e) => {
+    e.preventDefault()
+    messageShowOne.textContent = 'Loading..'
+    messageShowTwo.textContent = ''
+
+    getWeatherData(searchInput.value)
+})
+const getLocation = () => {
+    searchInput.value = 'Current location'
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(showPosition)
+    } else {
+        console.log("Geolocation is not supported by this browser.")
+    }
+}
+
+const showPosition = (position) => {
+    const lat = position.coords.latitude
+    const long = position.coords.longitude
+    
+    messageShowOne.textContent = 'Loading..'
+    messageShowTwo.textContent = ''
+    getWeatherData(lat + ',' + long)
+}

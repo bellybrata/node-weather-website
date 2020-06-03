@@ -10,6 +10,15 @@ body{
     min-height: 100vh;
 }
 
+a {
+    text-decoration: none;
+    color: #222;
+}
+
+a:hover{
+    color: #ff5500;
+}
+
 .main-content{
     flex-grow: 1;
 }
@@ -49,7 +58,7 @@ header ul li a{
 }
 
 img.about-img{
-    max-width: 85px;
+    max-width: 250px;
 }
 
 input{
@@ -61,8 +70,13 @@ input{
 button{
     cursor: pointer;
     padding: 8px;
-    border: 1px solid #888888;
+    border: 0;
     background: #888888;
     color: #FFF;
+    border-radius: 3px;
 
+}
+
+button.btn-current-loc{
+    background: #ff5500;
 }

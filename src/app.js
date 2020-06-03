@@ -63,9 +63,15 @@ app.get('/weather', (req, res) => {
                     errorMessage: err
                 })
             }
+            const forecastDataView = 'Weather : '+ forecastData.weather + ', Temp : ' +  forecastData.temperature + '°C, Feels Like : '+ forecastData.feelslike + '°C, Observation time : ' + forecastData.observation_time
+
+            
+            if(location == undefined){
+                location = forecastData.location_forecast
+            }
             
             res.send({
-                forecast: forecastData,
+                forecast: forecastDataView,
                 location,
                 address: req.query.address
             })
